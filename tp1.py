@@ -187,7 +187,6 @@ def plot_complexity(function, rng=range(10**3), tests=1, scale=1):
     x = []
     y = []
     for i in rng:
-        print(i)
         time = Timer(partial(function, i)).timeit(number=tests)
         x.append(i)
         y.append(time*scale)
@@ -197,9 +196,11 @@ def plot_log(rng):
     y = [np.log(i) for i in rng]
     plt.plot(rng, y, label="log(n)")
 
-plot_complexity(fibo_matrix, range(1, 10000, 20), tests=100, scale=650)
-plot_log(np.arange(1, 10000, 20))
-plt.show()
+# Décommenter ce bloc pour calculer le graphique :
+
+# plot_complexity(fibo_matrix, range(1, 10000, 20), tests=100, scale=650)
+# plot_log(np.arange(1, 10000, 20))
+# plt.show()
 
 # Le résultat est visible ici :
 # https://github.com/LeMinaw/TP1/raw/master/fibo_matrix_complexity.png
