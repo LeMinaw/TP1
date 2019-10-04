@@ -1,6 +1,6 @@
 # 1.1
 
-x = x_min = x_max = x = int(input("Entrez un entier : "))
+x = x_min = x_max = int(input("Entrez un entier : "))
 
 while x != 0:
     if x > x_max:
@@ -195,13 +195,30 @@ def plot_complexity(function, rng=range(10**3), tests=1, scale=1):
     
 def plot_log(rng):
     y = [np.log(i) for i in rng]
-    plt.plot(n, y, label="log(n)")
+    plt.plot(rng, y, label="log(n)")
 
 plot_complexity(fibo_matrix, range(1, 10000, 20), tests=100, scale=650)
 plot_log(np.arange(1, 10000, 20))
 plt.show()
 
 # Le résultat est visible ici :
+# https://github.com/LeMinaw/TP1/raw/master/fibo_matrix_complexity.png
+# 
+# La trace bleue est issue des mesures du temps d'exécution, la trace orange
+# correspond à une courble de logarithme naturel.
+#
+# On voit que la complexité du calcul est bien O(log n). En effet, la
+# puissance matricielle de NumPy effectue autant que possible des puissances
+# sucessives, réduisant drastiquement la complexité du calcul.
+#
+# Par exemple, pour mettre à la puissance 8, au lieu d'effectuer huit fois
+# le produit matriciel (M**8 = M*M*M*M*M*M*M*M), NumPy calculera la matrice
+# trois fois au carré (M**8 = ((M**2)**2)**2), n'effectuant que trois fois le
+# produit matriciel.
+#
+# Ce phénomène apparaît dans le graphique sous forme de "dents de scie", puisque
+# les puissances de nombres se décomposant mieux en puissances de deux sucessives
+# sont plus rapides à calculer.
 
 # 4.1
 
